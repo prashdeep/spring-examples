@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+
+	<!-- <bean id="person" class="com.edureka.spring.autowire.Person">
+		<constructor-arg name="id" value="10" />
+		<constructor-arg name="name" value="Pradeep" />
+	</bean>
+
+	<bean id="oldAddress" class="com.edureka.spring.autowire.Address">
+		<constructor-arg name="city" value="Bangalore" />
+		<constructor-arg name="state" value="Karnataka">
+		</constructor-arg>
+		<constructor-arg name="street" value=" 1st Cross, BTM"></constructor-arg>
+	</bean>
+	<bean id="newAddress" class="com.edureka.spring.autowire.Address">
+		<constructor-arg name="city" value="Mumbai" />
+		<constructor-arg name="state" value="Maharashtra">
+		</constructor-arg>
+		<constructor-arg name="street" value=" 1st Cross, BTM"></constructor-arg>
+	</bean> 
+	
+	<bean id="savingsAccount" class="com.edureka.spring.aop.SavingsAccount">
+	   
+	</bean>
+	
+	<bean id ="authInterceptor" class="com.edureka.spring.aop.AuthAspect"/>
+	<bean id="loggingAspect" class="com.edureka.spring.aop.LoggingAspect"/>
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetName" value="savingsAccount"></property>
+		<property name="interceptorNames">
+		   <list>
+		     <value>authInterceptor</value>
+		     <value>loggingAspect</value>
+		   </list>   
+		</property>
+	</bean> -->
+	
+	<bean id="student" class="com.edureka.spring.jdbc.Student"/>
+	<bean id="studentDAO" class="com.edureka.spring.jdbc.StudentDAO">
+		<constructor-arg name="jdbcTemplate" ref="jdbcTemplate"></constructor-arg>
+	</bean>
+	
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	  <constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost/students"></property>
+		<property name="password" value="password"></property>
+		<property name="username" value="root"></property>
+	</bean>
+
+</beans>
